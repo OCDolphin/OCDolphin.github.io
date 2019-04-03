@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+
+@{
+   var title = "";
+   var firstName = "";
+   var midlleIn = "";
+   var lastName = "";
+   var suffix = "";
+   var company = "";
+   var sPerson = "";
+   var email = "";
+   var phone = "";
+   if(IsPost){
+      title = @Request.Form["title"];
+      firstName = @Request.Form["first"];
+      middleIn = @Request.Form["middle"];
+      lastName = @Request.Form["last"];
+      suffix = @Request.Form["suff"];
+      company = @Request.Form["company"];
+      sPerson = @Request.Form["sPerson"];
+      email = @Request.Form["email"];
+      phone = @Request.Form["phone"];
+
+      var db = Database.Open("OCDolphinCustomers.bak");
+      var insertCommand = "INSERT INTO Customers (Title, FirstName, MiddleInitial, LastName, Suffix, Company, SalesPerson, Email, Phone) VALUES(title, firstName, middleIn, lastName, suffix, company, sPerson, email, phone)";
+      db.Execute(insertCommand, title, firstName, middleIn, lastName, suffix, company, sPerson, email, phone);
+      
+   }
+}
+
+
+
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <title>ヽ( •_)ᕗ</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body class="background">
+        
+
+<div class="body">
+<h1>Add a Customer (To the AdventureWorks Database)</h1>
+<form method="post">
+  <fieldset>
+    <legend>Customer Information</legend>
+    
+    <p><label for="title">Title:</label>
+       <input type="text" name="title" value="@Request.Form["title"]" />
+    </p>
+
+    <p><label for="first">First Name*:</label>
+       <input type="text" name="first" value="@Request.Form["first"]" />
+    </p>
+
+    <p><label for="middle">Middle Initial:</label>
+       <input type="text" name="middle" value="@Request.Form["middle"]" />
+    </p>
+
+    <p><label for="last">Last Name*:</label>
+        <input type="text" name="last" value="@Request.Form["last"]" />
+     </p>
+
+     <p><label for="suff">Suffix:</label>
+        <input type="text" name="suff" value="@Request.Form["suff"]" />
+     </p>
+
+     <p><label for="company">Company Name*:</label>
+        <input type="text" name="company" value="@Request.Form["company"]" />
+     </p>
+    
+     <p><label for="sPerson">SalesPerson*:</label>
+        <input type="text" name="sPerson" value="@Request.Form["sPerson"]" />
+     </p>
+
+     <p><label for="emai">Email Address*:</label>
+        <input type="email" name="emai" value="@Request.Form["email"]" />
+     </p>
+
+     <p><label for="phone">Phone*:</label>
+        <input type="tel" name="phone" value="@Request.Form["phone"]" />
+     </p>
+    <p><input type="submit" name="buttonSubmit" value="Add Customer" /></p>
+  </fieldset>
+</form>
+</div>
+<div class = "menu"> 
+   <ul class="menu">
+       <li class="logo"></li>
+       <li class="menu"><a href="https://ocdolphin.github.io/">Home</a></li>
+       <li class="menu"><a href="https://ocdolphin.github.io/about.html">About</a></li>
+       <li class="menu"><a href="https://ocdolphin.github.io/resume.html">My Resume</a></li>
+       <li class="menu"><a href="https://ocdolphin.github.io/scripts.html">Random</a></li>
+       <li class="menu"><a href="https://ocdolphin.github.io/databaseEditor.html">I tried :(</a></li>
+   </ul>
+</div>
+
+</body>
+</html>
